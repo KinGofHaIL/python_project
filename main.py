@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from config.database import user_collection
 from routes.CategoryRoutes import router as category_router
 from routes.SubCategoryRoutes import router as sub_category_router
+from routes.ProductRoutes import router as product_router
 
 app = FastAPI()
 
@@ -29,6 +30,7 @@ app.include_router(area_router)
 app.include_router(agent_router)  # Added agent routes
 app.include_router(category_router)
 app.include_router(sub_category_router)
+app.include_router(product_router)
 
 # Get all users
 @app.get("/users")
