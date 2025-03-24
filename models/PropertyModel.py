@@ -17,4 +17,8 @@ class PropertyModel(BaseModel):
     def convert_objectId(cls, v):
         if isinstance(v, ObjectId):
             return str(v)
-        return v
+        return v  # Fixed syntax issue here
+
+    class Config:
+        allow_population_by_field_name = True  # Allow using `_id` as `propertyId`
+        json_encoders = {ObjectId: str}  # Ensure ObjectId is serialized properly

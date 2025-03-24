@@ -12,8 +12,9 @@ from routes.AreaRoutes import router as area_router
 from routes.AgentRoutes import router as agent_router
 from routes.CategoryRoutes import router as category_router
 from routes.SubCategoryRoutes import router as sub_category_router
-from routes.ProductRoutes import router as product_router
+# from routes.ProductRoutes import router as product_router
 from routes.PropertyRoutes import router as property_router
+from routes.PropertyDetailsRoutes import router as property_details_router
 
 # ✅ Create FastAPI app
 app = FastAPI(
@@ -45,8 +46,9 @@ app.include_router(area_router, prefix="/api/areas", tags=["Areas"])
 app.include_router(agent_router, prefix="/api/agents", tags=["Agents"])
 app.include_router(category_router, prefix="/api/categories", tags=["Categories"])
 app.include_router(sub_category_router, prefix="/api/subcategories", tags=["Subcategories"])
-app.include_router(product_router, prefix="/api/products", tags=["Products"])
+# app.include_router(product_router, prefix="/api/products", tags=["Products"])
 app.include_router(property_router, prefix="/api/properties", tags=["Properties"])
+app.include_router(property_details_router)
 
 # ✅ Server health check
 @app.get("/", tags=["Root"])
@@ -73,3 +75,4 @@ async def shutdown_event():
 
 # ✅ Run the server using the command below:
 # python -m uvicorn main:app --reload
+

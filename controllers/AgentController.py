@@ -31,7 +31,7 @@ async def getAgents():
 
     for agent in agents:
         # Convert ObjectId fields to string
-        agent["_id"] = str(agent["_id"])
+        # agent["_id"] = str(agent["_id"])
         agent["state_id"] = str(agent["state_id"]) if "state_id" in agent else None
         agent["city_id"] = str(agent["city_id"]) if "city_id" in agent else None
         agent["area_id"] = str(agent["area_id"]) if "area_id" in agent else None
@@ -51,4 +51,17 @@ async def getAgents():
             area = await area_collection.find_one({"_id": ObjectId(agent["area_id"])})
             agent["area"] = {"_id": str(area["_id"]), "name": area["name"]} if area else None
 
-    return [AgentOut(**agent) for agent in agents]
+    return [
+        {
+            # "id": agent["_id"],
+            "agentName": agent.get("agentName", "N/A"),
+            "agencyName": agent.get("agencyName", "N/A"),
+            "experience": agent.get("experience", 0),
+            "contactNo": agent.get("contactNo", "N/A"),
+            "email": agent.get("email", "N/A"),
+            "state": agent.get("state", {}),
+            "city": agent.get("city", {}),
+            "area": agent.get("area", {}),
+        }
+        for agent in agents
+    ]

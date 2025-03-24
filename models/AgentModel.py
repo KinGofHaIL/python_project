@@ -33,7 +33,10 @@ class Area(BaseModel):
         return str(v) if isinstance(v, ObjectId) else v
 
 class Agent(BaseModel):
-    agentId: str
+    # agentId: str
+    name: str  # Agent name
+    contact_no: str  # Agent phone number
+    email: str  # Agent email
     agencyName: str
     experience: int
     userId: str
