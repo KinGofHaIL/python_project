@@ -19,3 +19,7 @@ sub_category_collection = db["sub_categories"]
 # product_collection = db["products"]
 property_details_collection = db["property_details"]  # Consistent with PropertyDetailsController.py
 properties_collection = db["properties"]
+
+def get_db():
+    return db
+
